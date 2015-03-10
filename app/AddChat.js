@@ -1,5 +1,6 @@
 var React = require('react');
 var $ = require('jquery');
+var config = require('./Config');
 
 function getDefaultProps() {
   return {
@@ -37,9 +38,9 @@ function addChat() {
     type: 'POST',
     data: JSON.stringify({text: this.refs.newChatInput.getDOMNode().value}),
     beforeSend: function(request) {
-      request.setRequestHeader("X-Parse-Application-Id", 'YOUR-PARSE-APP-ID');
-      request.setRequestHeader("X-Parse-REST-API-Key", 'YOUR-PARSE-API-KEY');
-      request.setRequestHeader("Content-Type", 'application/json');
+      request.setRequestHeader("X-Parse-Application-Id", config.applicationId);
+      request.setRequestHeader("X-Parse-REST-API-Key",   config.restKey);
+      request.setRequestHeader("Content-Type",           'application/json');
     },
     error: function() {
       console.log('error on post');

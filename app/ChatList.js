@@ -1,5 +1,6 @@
 var React = require('react');
 var $ = require('jquery');
+var config = require('./Config');
 
 function getInitialState() {
   return {
@@ -25,9 +26,9 @@ function getChats() {
     url: this.props.url,
     type: 'GET',
     beforeSend: function(request) {
-      request.setRequestHeader("X-Parse-Application-Id", 'YOUR-PARSE-APP-ID');
-      request.setRequestHeader("X-Parse-REST-API-Key", 'YOUR-PARSE-API-KEY');
-      request.setRequestHeader("Content-Type", 'application/json');
+      request.setRequestHeader("X-Parse-Application-Id", config.applicationId);
+      request.setRequestHeader("X-Parse-REST-API-Key",   config.restKey);
+      request.setRequestHeader("Content-Type",           'application/json');
     },
     error: function(data) {
       console.log('There was an error in getting the chats');
