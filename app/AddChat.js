@@ -19,7 +19,8 @@ function render(){
     <div className="form-group">
       <input 
         type="text"
-        ref='newChatInput'  placeholder="Compose Message" 
+        ref='newChatInput'
+        placeholder="Compose Message" 
         className="form-control" 
         onKeyDown={this.handleSubmit} />
     </div>
@@ -36,7 +37,9 @@ function addChat() {
   $.ajax({
     url:  this.props.url,
     type: 'POST',
-    data: JSON.stringify({text: this.refs.newChatInput.getDOMNode().value}),
+    data: JSON.stringify({
+      text: this.refs.newChatInput.getDOMNode().value
+    }),
     beforeSend: function(request) {
       request.setRequestHeader("X-Parse-Application-Id", config.applicationId);
       request.setRequestHeader("X-Parse-REST-API-Key",   config.restKey);
@@ -47,7 +50,8 @@ function addChat() {
     },
     success: function() {
       console.log('Successful Post');
-    }
+      this.refs.newChatInput.getDOMNode().value = '';
+    }.bind(this)
   })
 }
 

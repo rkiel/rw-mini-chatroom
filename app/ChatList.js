@@ -20,7 +20,6 @@ function getDefaultProps() {
   };
 }
 
-
 function getChats() {
   $.ajax({
     url: this.props.url,
